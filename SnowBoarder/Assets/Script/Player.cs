@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] float torqueAmount = 3f;
+    [SerializeField] float torqueAmount = 10f;
     Rigidbody2D rb2d;
-
 
     void Start()
     {
@@ -15,11 +14,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        move();
+            move();
     }
 
     void move()
     {
+        
         if(Input.GetKey(KeyCode.LeftArrow)) 
         {
             rb2d.AddTorque(torqueAmount);
