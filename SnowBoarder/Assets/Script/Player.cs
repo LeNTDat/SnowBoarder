@@ -5,21 +5,37 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float torqueAmount = 10f;
-    Rigidbody2D rb2d;
+    [SerializeField] float defaultSpeed = 9f;
+    [SerializeField] float boostsSpeed = 3f;
+    [SerializeField] ParticleSystem boostDrip; 
 
+    Rigidbody2D rb2d;
+    SurfaceEffector2D surfaceEffector2D;
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        surfaceEffector2D = FindAnyObjectByType<SurfaceEffector2D>();
     }
 
     void Update()
     {
-            move();
+        rotatePlayer();
+        BootsPlayer();
     }
 
-    void move()
+    void BootsPlayer ()
     {
-        
+        surfaceEffector2D.speed = defaultSpeed ;
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            boostDrip.Play();
+            surfaceEffector2D.speed = defaultSpeed + boostsSpeed;
+        }
+
+    }
+
+    void rotatePlayer()
+    {
         if(Input.GetKey(KeyCode.LeftArrow)) 
         {
             rb2d.AddTorque(torqueAmount);
