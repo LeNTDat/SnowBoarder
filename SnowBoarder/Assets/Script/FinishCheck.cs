@@ -13,6 +13,7 @@ public class FinishCheck : MonoBehaviour
         if (collision.tag == "Player")
         {
             finishParticle.Play();
+            GetComponent<AudioSource>().Play();
             Invoke("ReloadScene", delayTime);
 
         }
@@ -20,7 +21,7 @@ public class FinishCheck : MonoBehaviour
 
     void ReloadScene()
     {
-       // SceneManager.LoadScene(0);
+       SceneManager.LoadScene(0);
     }
 
 }

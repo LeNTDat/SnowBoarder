@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CrashDetect : MonoBehaviour
 {
-    float delayTime = 1.2f;
+    float delayTime = 0.6f;
     [SerializeField] ParticleSystem crashParticle;
+    [SerializeField] AudioClip crashSfx;
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.transform.name == "Level Sprite Shape")
         {
             crashParticle.Play();
+            GetComponent<AudioSource>().PlayOneShot(crashSfx);
             Invoke("ReloadScene", delayTime);   
         }
     }

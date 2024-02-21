@@ -5,9 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] float torqueAmount = 10f;
-    [SerializeField] float defaultSpeed = 9f;
-    [SerializeField] float boostsSpeed = 3f;
-    [SerializeField] ParticleSystem boostDrip; 
+    [SerializeField] float defaultSpeed = 12f;
+    [SerializeField] float boostsSpeed = 10f;
 
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
@@ -26,9 +25,8 @@ public class Player : MonoBehaviour
     void BootsPlayer ()
     {
         surfaceEffector2D.speed = defaultSpeed ;
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
-            boostDrip.Play();
             surfaceEffector2D.speed = defaultSpeed + boostsSpeed;
         }
 
